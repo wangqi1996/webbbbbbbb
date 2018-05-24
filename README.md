@@ -1,5 +1,6 @@
-# webbbbbbbb
-Web大作业
+﻿# webbbbbbbb
+* Web大作业
+* 队长：王东琪
 
 **项目建议书保存在wiki里面**
 
