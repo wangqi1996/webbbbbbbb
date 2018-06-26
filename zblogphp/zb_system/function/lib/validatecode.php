@@ -107,19 +107,7 @@ class ValidateCode
         return $this->contents;
     }
 
-    /**
-     * Enable/Disables the interpolation.
-     *
-     * @param $interpolate bool  True to enable, false to disable
-     *
-     * @return CaptchaBuilder
-     */
-    public function setInterpolation($interpolate = true)
-    {
-        $this->interpolation = $interpolate;
 
-        return $this;
-    }
 
     public function __construct()
     {
@@ -228,19 +216,6 @@ class ValidateCode
         return $this;
     }
 
-    /**
-     * Sets the ignoreAllEffects value.
-     *
-     * @param bool $ignoreAllEffects
-     *
-     * @return CaptchaBuilder
-     */
-    public function setIgnoreAllEffects($ignoreAllEffects)
-    {
-        $this->ignoreAllEffects = $ignoreAllEffects;
-
-        return $this;
-    }
 
     /**
      * Sets the list of background images to use (one image is randomly selected).

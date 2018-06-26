@@ -584,7 +584,7 @@ function xmlrpc_getPostCategories($id)
  *
  * @param int     $id        文章ID
  * @param string  $xmlstring 文章数据xml
- * @param boolval $publish   是否直接发布
+ * @param boolean $publish   是否直接发布
  *
  * @throws Exception
  */
@@ -757,42 +757,6 @@ function xmlrpc_editPage($id, $xmlstring, $publish)
     }
 }
 
-/**
- * XML-RPC 上传媒体文件.
- *
- * 输出操作结果
- *
- * @param int    $id        页面ID
- * @param string $xmlstring 上传文件数据xml
- */
-function xmlrpc_newMediaObject($xmlstring)
-{
-    global $zbp;
-
-    $xml = simplexml_load_string($xmlstring);
-
-    if ($xml) {
-        $post = array();
-        foreach ($xml->children() as $x) {
-            $a = (string) $x->name;
-            $b = $x->value->children();
-            $post[$a] = $b;
-        }
-        $upload = new Upload();
-        $f = GetGuid() . strrchr($post['name'], '.');
-        $upload->Name = $f;
-        $upload->SourceName = $post['name'];
-        $upload->MimeType = $post['type'];
-        $upload->Size = 0;
-        $upload->AuthorID = $zbp->user->ID;
-        $upload->SaveBase64File($post['bits']);
-        $upload->Save();
-
-        $strXML = '<methodResponse><params><param><value><struct><member><name>url</name><value><string>$%#1#%$</string></value></member></struct></value></param></params></methodResponse>';
-        $strXML = str_replace("$%#1#%$", htmlspecialchars($upload->Url), $strXML);
-        echo $strXML;
-    }
-}
 
 /**
  * XML-RPC辅助.

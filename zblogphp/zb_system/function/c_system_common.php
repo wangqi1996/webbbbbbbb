@@ -182,13 +182,13 @@ function Logs($logString, $isError = false)
             $f = $zbp->usersdir . 'logs/' . md5($zbp->path) . '.txt';
         }
     }
-    ZBlogException::SuspendErrorHook();
+
     if ($handle = @fopen($f, 'a+')) {
         $t = date('Y-m-d') . ' ' . date('H:i:s') . ' ' . substr(microtime(), 1, 9) . ' ' . date('P');
         @fwrite($handle, '[' . $t . ']' . "\r\n" . $logString . "\r\n");
         @fclose($handle);
     }
-    ZBlogException::ResumeErrorHook();
+
 
     return true;
 }

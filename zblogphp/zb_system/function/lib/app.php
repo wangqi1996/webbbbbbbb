@@ -548,63 +548,7 @@ class App
         return gzencode($this->Pack(), 9, FORCE_GZIP);
     }
 
-    /**
-     * 解开应用包.
-     *
-     * @param $xml
-     *
-     * @return bool
-     */
-    public static function UnPack($xml)
-    {
-        global $zbp;
-        $charset = array();
-        $charset[1] = substr($xml, 0, 1);
-        $charset[2] = substr($xml, 1, 1);
-        if (ord($charset[1]) == 31 && ord($charset[2]) == 139) {
-            $xml = gzdecode($xml);
-        }
-
-        $xml = simplexml_load_string($xml);
-        if (!$xml) {
-            return false;
-        }
-
-        if ($xml['version'] != 'php') {
-            return false;
-        }
-
-        $type = $xml['type'];
-        $id = $xml->id;
-        $dir = $zbp->path . 'zb_users/' . $type . '/';
-
-        ZBlogException::SuspendErrorHook();
-
-        if (!file_exists($dir . $id . '/')) {
-            @mkdir($dir . $id . '/', 0755, true);
-        }
-
-        foreach ($xml->folder as $folder) {
-            $f = $dir . $folder->path;
-            if (!file_exists($f)) {
-                @mkdir($f, 0755, true);
-            }
-        }
-
-        foreach ($xml->file as $file) {
-            $s = base64_decode($file->stream);
-            $f = $dir . $file->path;
-            @file_put_contents($f, $s);
-            if (function_exists('chmod')) {
-                @chmod($f, 0755);
-            }
-        }
-
-        ZBlogException::ResumeErrorHook();
-
-        return true;
-    }
-
+  
     /**
      * @throws Exception
      */

@@ -1,8 +1,0 @@
-{
-	"id": "recount-comment",
-	"name": "文章评论重新计数",
-	"category": "recount",
-	"question": [
-		"文章评论总数不准"
-	]
-}

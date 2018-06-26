@@ -97,10 +97,7 @@ class ZBlogPHP
      */
     public $configs = array();
 
-    /**
-     * @var Comment[] 璇勮鏁扮粍
-     */
-    public $comments = array();
+ 
     /**
      * @var Post[] 鏂囩珷鍒楄〃鏁扮粍
      */
@@ -1802,29 +1799,7 @@ class ZBlogPHP
         return $array;
     }
 
-    /**
-     * @param mixed $select
-     * @param mixed $where
-     * @param mixed $order
-     * @param mixed $limit
-     * @param mixed $option
-     *
-     * @return Comment[]
-     */
-    public function GetCommentList($select = null, $where = null, $order = null, $limit = null, $option = null)
-    {
-        if (empty($select)) {
-            $select = array('*');
-        }
-        $sql = $this->db->sql->Select($this->table['Comment'], $select, $where, $order, $limit, $option);
-        /** @var Comment[] $array */
-        $array = $this->GetListType('Comment', $sql);
-        foreach ($array as $comment) {
-            $this->comments[$comment->ID] = $comment;
-        }
 
-        return $array;
-    }
 
     /**
      * @param mixed $select
@@ -2266,18 +2241,7 @@ class ZBlogPHP
         return $m->ID > 0;
     }
 
-    /**
-     * 閫氳繃ID鑾峰彇璇勮瀹炰緥.
-     *
-     * @param int $id
-     *
-     * @return Comment|Base
-     */
-    public function GetCommentByID($id)
-    {
-        return $this->GetSomeThing('comments', 'ID', $id, 'Comment');
-    }
-
+ 
     /**
      * 閫氳繃ID鑾峰彇闄勪欢瀹炰緥.
      *

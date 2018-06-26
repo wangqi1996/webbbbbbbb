@@ -44,9 +44,7 @@ class API_IO
     {
         if ($formatString === "") {
             self::$ioFormat = self::FORMAT_JSON;
-        } elseif (0 > strpos($formatString, 'json')) {
-            self::end(API_ERROR::NON_ACCEPT);
-        }
+        } 
 
         $uri = GetVars('REQUEST_URI', 'SERVER');
         $queryStringArray = explode('?', $uri);
