@@ -232,6 +232,7 @@ class ZBlogPHP
 
         return new $newtype();
     }
+ 
 
     /**
      * 鏋勯�犲嚱鏁帮紝鍔犺浇鍩烘湰閰嶇疆鍒�$zbp.
@@ -2028,7 +2029,20 @@ class ZBlogPHP
     {
         return $this->GetCategoryByAlias($name, 'Name');
     }
-
+    public function GetCommentList($select = null, $where = null, $order = null, $limit = null, $option = null)
+    {
+        if (empty($select)) {
+            $select = array('*');
+        }
+        $sql = $this->db->sql->Select($this->table['Comment'], $select, $where, $order, $limit, $option);
+        /** @var Comment[] $array */
+        $array = $this->GetListType('Comment', $sql);
+        foreach ($array as $comment) {
+            $this->comments[$comment->ID] = $comment;
+        }
+        
+        return $array;
+    }
     /**
      * 閫氳繃ID鑾峰彇妯″潡瀹炰緥.
      *

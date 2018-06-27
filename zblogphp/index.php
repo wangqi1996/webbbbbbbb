@@ -48,6 +48,9 @@ function addDivItem()
 		$url = $value->__get('Url');
 		$current_image_index = ($current_image_index+1)%20+1;
 		$current_ico_index = mt_rand(1,11);
+		$url_array = explode("?",$url);
+		$url = $url_array[0].'post.php?'.$url_array[1];
+
 		echo '
 		<div class="post-list-item">
                 <div class="post-list-item-container">
