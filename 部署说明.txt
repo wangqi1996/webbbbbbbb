@@ -1,9 +1,0 @@
-1. 首先创建数据库，导入sql文件(创建数据表)
-2. 更改c_option.php中的配置,该文件位于zb_user文件包中  
-  'ZC_MYSQL_SERVER' => '主机名',
- 
- 'ZC_MYSQL_USERNAME' => 'mysql用户名',
-  
-'ZC_MYSQL_PASSWORD' => 'mysql密码',
-  
-'ZC_MYSQL_NAME' => '数据库名',
